@@ -1,7 +1,13 @@
 <!doctype html>
 <html lang="en">
+<?php
 
-<!-- Mirrored from progression-studios.com/skrn/signup-step3.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Sep 2021 14:39:43 GMT -->
+if(!isset($_SESSION["paymentPlan"])) {
+    header("Location: signup-step1.php");
+}
+
+
+?>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -142,11 +148,11 @@
                                 <div class="form-group">
                                     <label for="cardHolderFullName" class="col-form-label">Cardholder Name:</label>
                                     <input type="text" class="form-control" id="cardHolderFullName"
-                                           name="cardHolderFullName" required>
+                                           name="cardHolderFullName" placeholder="Full Name" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="cardNumber" class="col-form-label">Card Number:</label>
-                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" required>
+                                    <input type="text" class="form-control" id="cardNumber" name="cardNumber" placeholder="Card Number" required>
                                 </div>
 
                                 <div class="row adjust-margin-top adjust-margin-bottom">
@@ -172,7 +178,6 @@
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group">
                                     <div class="billing-plan-container">
                                         <h5>Your Plan: <a href="signup-step1.php">Change plan</a></h5>

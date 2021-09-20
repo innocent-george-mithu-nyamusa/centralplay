@@ -88,7 +88,7 @@ if(isset($_SESSION["userDetailEmail"])) {
                                          <use xlink:href="#exclamation-triangle-fill"></use>
                                      </svg>
                                      <div id="errText" style="background-size: cover;">
-                                         Username Already taken
+                                         Email Already taken
                                      </div>
                                  </div>
 
@@ -148,8 +148,6 @@ if(isset($_SESSION["userDetailEmail"])) {
         <?php include "includes/footer.php";?>
 		
 		<a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
-		
-		
 		<!-- Modal -->
 		<?php include "includes/loginModal.php";?><!-- close .modal -->
 		

@@ -95,7 +95,6 @@ class UserView extends UserContr
         return parent::updatePasswordStatus();
     }
 
-
     public function getAllUsers(): ?array
     {
         return parent::getAllUsersResult();

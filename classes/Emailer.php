@@ -2,11 +2,15 @@
 
 namespace Classes;
 
+use Exception;
+use SendGrid;
+use SendGrid\Mail\Mail;
+
 class Emailer
 {
     public function __construct($name, $email, $messagePlain, $messageHtml){
 
-        $mail = new \SendGrid\Mail\Mail();
+        $mail = new Mail();
 
         $mail->setFrom("lostandfound@lostandfound.com", "Lost and Found");
         $mail->setSubject("Thanks for Signing Up with Lost and Found. Please Verify your Account");
@@ -14,7 +18,7 @@ class Emailer
         $mail->addContent("text/plain", $messagePlain);
         $mail->addContent("text/html", $messageHtml);
 
-        $sendgrid = new \SendGrid("key here");
+        $sendgrid = new SendGrid("key here");
 
         try {
             $response = $sendgrid->send($email);
@@ -22,7 +26,7 @@ class Emailer
             // print_r($response->headers());
             // print $response->body() . "\n";
 //            $request = new UserRequest($name, $email, $messagePlain);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo "Caught exception ". $e->getMessage(). "\n";
         }
 

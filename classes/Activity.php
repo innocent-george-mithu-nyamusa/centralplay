@@ -3,6 +3,7 @@
 
 namespace Classes;
 
+use Exception;
 use PDO;
 
 class Activity extends Dbh
@@ -75,7 +76,7 @@ class Activity extends Dbh
             $createActivityStmt->closeCursor();
             return $result;
 
-        }catch (\Exception $exception) {
+        }catch (Exception $exception) {
             echo "Failed to create activity". $exception->getMessage();
             return false;
         }
@@ -94,7 +95,7 @@ class Activity extends Dbh
             $results = $getActivityStmt->fetchAll(PDO::FETCH_ASSOC);
             $getActivityStmt->closeCursor();
             return $results;
-        }catch (\Exception $exception) {
+        }catch (Exception $exception) {
             echo "Failed to get all user ". $exception->getMessage();
             return false;
         }
@@ -116,7 +117,7 @@ class Activity extends Dbh
 
             return $results;
 
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             echo "failed to get actvity claims on User". $exception->getMessage();
         }
     }
@@ -135,7 +136,7 @@ class Activity extends Dbh
             $results = $getUserLikeItemsStmt->fetchAll();
             $getUserLikeItemsStmt->closeCursor();
 
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             echo "failed to get actvity claims on User". $exception->getMessage();
         }
     }

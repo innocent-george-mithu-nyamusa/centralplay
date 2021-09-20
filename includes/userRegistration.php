@@ -18,6 +18,31 @@
         const onemoneyPaymentOption = $("#payment_onemoney_option");
         const telecashPaymentOption = $("#payment_telecash_option");
 
+        const planRtgs = $("#plan-rtgs");
+        const planUs = $("#plan-us");
+
+        planRtgs.on("click", function (){
+
+            //Set Php Payment type Option
+            <?php
+            if(isset($_SESSION)){
+                $_SESSION["paymentPlan"] = "rtgs";
+            }
+            ?>
+            //Proceed to step 2
+            window.location = 'http://localhost/centralplay/signup-step2.php';
+        })
+
+        planUs.on("click", function (){
+            //Set Php Payment type Option
+            <?php
+            if(isset($_SESSION)){
+                $_SESSION["paymentPlan"] = "us";
+            }
+            ?>
+            //Proceed to step 2
+            window.location = 'http://localhost/centralplay/signup-step2.php';
+        })
 
         // $("#full-name").change(function () {
         //     var value = $(this).val();
@@ -569,6 +594,7 @@
                 }
             ));
         });
+
         $("#ecocashRegister").click(function (a) {
             a.preventDefault();
 
@@ -610,6 +636,8 @@
                 }
             ));
         });
+
+
         $("#onemoneyRegister").click(function (a) {
             a.preventDefault();
 
@@ -651,6 +679,7 @@
                 }
             ));
         });
+
         $("#telecashNumberRegister").click(function (a) {
             a.preventDefault();
 

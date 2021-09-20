@@ -3,8 +3,8 @@
 
 namespace Classes;
 
-
 use PDO;
+use PDOException;
 
 class Dbh
 {
@@ -20,8 +20,8 @@ class Dbh
             $pdo = new PDO($dsn, $this->user, $this->pwd);
             $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
             return $pdo;
-        }catch (\PDOException $exception){
-            $exception->getMessage();
+        }catch (PDOException $exception){
+            echo $exception->getMessage();
             return null;
         }
 

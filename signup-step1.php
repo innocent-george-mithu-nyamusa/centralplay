@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="en">
-	
-<!-- Mirrored from progression-studios.com/skrn/signup-step1.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Sep 2021 14:39:41 GMT -->
+
 <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,7 +77,7 @@
                                             <li>HD also Available</li>
                                             <li>One Time For Any Season</li>
 										</ul>
-										<p><a class="btn btn-green-pro" href="signup-step2.php" role="button">Choose Plan</a></p>
+										<p><a class="btn btn-green-pro" id="plan-rtgs" role="button">Choose Plan</a></p>
 									</div><!-- close .pricing-table-col -->
 								</div><!-- close .col-md-12 -->
 								<div class="col-sm">
@@ -92,13 +91,13 @@
                                             <li>HD also Available</li>
                                             <li>One Time For Any Season</li>
 										</ul>
-										<p><a class="btn" href="signup-step2.php" role="button">Choose Plan</a></p>
+										<p><a class="btn" id="plan-us" role="button">Choose Plan</a></p>
 									</div><!-- close .pricing-table-col -->
 								</div><!-- close .col-md-12 -->
 							</div><!-- close .row -->
 							
 						</div><!-- close .pricing-plans-page-container -->
-					
+
 				</div><!-- close .container -->
 			</div><!-- close #pricing-plans-background-image -->
 			

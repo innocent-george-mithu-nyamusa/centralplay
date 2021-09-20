@@ -11,24 +11,20 @@ class SignUp extends Dbh
 {
     private string $user_id;
     private string $username;
-    private string $user_firstname;
-    private string $user_lastname;
+    private string $user_fullname;
     private string $user_email;
     private string $user_password;
     private string $phone;
 
     //adds a new user to database
 
-    protected function setFirstname($firstname)
+    /**
+     * @param string $user_fullname
+     */
+    public function setUserFullName(string $user_fullName): void
     {
-        $this->user_firstname = $firstname;
+        $this->user_fullname = $user_fullName;
     }
-
-    protected function setLastname($lastname)
-    {
-        $this->user_lastname = $lastname;
-    }
-
     protected function setUsername($username)
     {
         $this->username = $username;
@@ -65,14 +61,12 @@ class SignUp extends Dbh
 
         try {
 
-            $sign_up_query = "INSERT INTO user(user_id, username, user_firstname, user_lastname, user_email, user_password) ";
-            $sign_up_query .= "VALUES (:user_id,:username,:user_firstname,:user_lastname,:user_email,:user_password)";
+            $sign_up_query = "INSERT INTO user (user_id, username, user_fullname, user_email, user_password) VALUES (:user_id,:username,:user_fullname,:user_email,:user_password)";
 
             $signup_stmt = $this->connect()->prepare($sign_up_query);
             $signup_stmt->bindParam(':user_id', $this->user_id);
             $signup_stmt->bindParam(':username', $this->username);
-            $signup_stmt->bindParam(':user_firstname', $this->user_firstname);
-            $signup_stmt->bindParam(':user_lastname', $this->user_lastname);
+            $signup_stmt->bindParam(':user_fullname', $this->user_fullname);
             $signup_stmt->bindParam(':user_email', $this->user_email);
             $signup_stmt->bindParam(':user_password', $this->user_password);
 
@@ -91,14 +85,13 @@ class SignUp extends Dbh
 
     private function createUser(): bool {
         try {
-            $sign_up_query = "INSERT INTO user(user_id, username, user_firstname, user_lastname, user_email, user_phone, user_password) ";
-            $sign_up_query .= "VALUES (:user_id,:username,:user_firstname,:user_lastname,:user_email, :user_phone, :user_password)";
+            $sign_up_query = "INSERT INTO user(user_id, username, user_fullname, user_email, user_phone, user_password) ";
+            $sign_up_query .= "VALUES (:user_id,:username,:user_fullname,:user_email, :user_phone, :user_password)";
 
             $signup_stmt = $this->connect()->prepare($sign_up_query);
             $signup_stmt->bindParam(':user_id', $this->user_id);
             $signup_stmt->bindParam(':username', $this->username);
-            $signup_stmt->bindParam(':user_firstname', $this->user_firstname);
-            $signup_stmt->bindParam(':user_lastname', $this->user_lastname);
+            $signup_stmt->bindParam(':user_fullname', $this->user_fullname);
             $signup_stmt->bindParam(':user_email', $this->user_email);
             $signup_stmt->bindParam(':user_phone', $this->phone);
             $signup_stmt->bindParam(':user_password', $this->user_password);

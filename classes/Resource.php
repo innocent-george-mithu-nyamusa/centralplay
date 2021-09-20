@@ -4,6 +4,7 @@
 namespace Classes;
 
 
+use Exception;
 use PDO;
 
 class Resource extends Dbh
@@ -74,7 +75,7 @@ class Resource extends Dbh
             $createResourceStmt->bindParam("resourceItemId", $this->itemId);
             $createResourceStmt->bindParam("resourceUserId", $this->userId);
             return $createResourceStmt->execute();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to create Item " . $exception->getMessage();
             return false;
         }
@@ -96,7 +97,7 @@ class Resource extends Dbh
             $updateLikeStmt->closeCursor();
             return $result;
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to update Like " . $exception->getTraceAsString();
             return false;
         }
@@ -118,7 +119,7 @@ class Resource extends Dbh
             $updateLikeStmt->closeCursor();
             return $result;
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to update Like " . $exception->getTraceAsString();
             return false;
         }
@@ -139,7 +140,7 @@ class Resource extends Dbh
             $results = $currentViewStmt->fetchAll(PDO::FETCH_ASSOC);
             return $results[0]["resource_view"];
 
-        }catch (\Exception $exception){
+        }catch (Exception $exception){
             echo "failed to get item count".$exception->getMessage();
             return 0;
         }
@@ -155,7 +156,7 @@ class Resource extends Dbh
             $updateLikeStmt->bindParam(":itemId", $this->itemId);
             $updateLikeStmt->bindParam(":resourceUserId", $this->userId);
             return $updateLikeStmt->execute();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to update View " . $exception->getTraceAsString();
             return false;
         }
@@ -176,7 +177,7 @@ class Resource extends Dbh
             $updateLikeStmt->bindParam(":resourceItemId", $this->itemId);
             $updateLikeStmt->bindParam(":resourceUserId", $this->userId);
             return $updateLikeStmt->execute();
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to update Like " . $exception->getMessage();
             return false;
         }
@@ -197,7 +198,7 @@ class Resource extends Dbh
             $results = $getViewsStmt->fetchColumn();
             $getViewsStmt->closeCursor();
             return $results;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to get views " . $exception->getMessage();
             return null;
         }
@@ -219,7 +220,7 @@ class Resource extends Dbh
             $getLikesStmt->closeCursor();
             return $results;
 
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to get views " . $exception->getMessage();
             return null;
         }
@@ -245,7 +246,7 @@ class Resource extends Dbh
                 return true;
             }
             return false;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to check if user ahs liked the item or not " . $exception->getMessage();
             return false;
         }
@@ -270,7 +271,7 @@ class Resource extends Dbh
                 return true;
             }
             return false;
-        } catch (\Exception $exception) {
+        } catch (Exception $exception) {
             echo "Failed to check if user has reacted " . $exception->getMessage();
             return false;
         }

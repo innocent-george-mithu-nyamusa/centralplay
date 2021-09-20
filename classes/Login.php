@@ -2,6 +2,7 @@
 
 namespace Classes;
 
+use Exception;
 use PDO;
 
 class Login extends Dbh
@@ -53,7 +54,7 @@ class Login extends Dbh
 //                echo "failed to login";
                 return false;
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             echo $e->getMessage();
             return false;
         }

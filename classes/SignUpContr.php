@@ -9,8 +9,7 @@ class SignUpContr extends SignUp
 
     private $cUsename;
     private $cEmail;
-    private $cFirstname;
-    private $cLastname;
+    private $cFullname;
     private $cId;
     private $password;
 
@@ -31,13 +30,10 @@ class SignUpContr extends SignUp
         $this->setEmail($this->cEmail);
     }
 
-    private function checkFirstname(): void {
-        $this->setFirstname($this->cFirstname);
+    private function checkFullname(): void {
+        $this->setUserFullName($this->cFullname);
     }
 
-    private function checkLastname(): void {
-        $this->setLastname($this->cLastname);
-    }
 
     private function checkId(): void {
         $this->createId();
@@ -59,20 +55,14 @@ class SignUpContr extends SignUp
         $this->setPhone($phone);
     }
 
-
     protected function getEmail(string $email) : void {
         $this->cEmail = $email;
         $this->checkEmail();
     }
 
-    protected function getFirstname(string $firstname) : void  {
-        $this->cFirstname = $firstname;
-        $this->checkFirstname();
-    }
-
-    protected function getLastname(string $lastname) : void  {
-        $this->cLastname = $lastname;
-        $this->checkLastname();
+    protected function getFullname(string $fullname) : void  {
+        $this->cFullname = $fullname;
+        $this->checkFullname();
     }
 
     protected function getPassword(string $password) : void{

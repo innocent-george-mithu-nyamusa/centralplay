@@ -27,19 +27,17 @@ class SignUpView extends SignUpContr
         $this->status = $this->getSignUpStatus();
     }
 
-    public function createUser(string $username,string $firstname, string $lastname, string $phone, string $email, string $password) {
+    public function createUser(string $username,string $fullname, string $phone, string $email, string $password) :bool {
 
         $username = Utilities::cleanData($username);
-        $firstname = Utilities::cleanData($firstname);
         $email = Utilities::cleanData($email);
-        $lastname = Utilities::cleanData($lastname);
+        $fullname = Utilities::cleanData($fullname);
         $phone = Utilities::cleanData($phone);
         $password = Utilities::cleanData($password);
 
         $this->getId();
         $this->getUsername($username);
-        $this->getFirstname($firstname);
-        $this->getLastname($lastname);
+        $this->getFullname($fullname);
         $this->getPhone($phone);
         $this->getEmail($email);
         $this->getPassword($password);
