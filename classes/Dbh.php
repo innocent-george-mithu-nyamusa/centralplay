@@ -11,7 +11,7 @@ class Dbh
     private $host = "localhost";
     private $user = "root";
     private $pwd = "";
-    private $dbName = "lost_and_found";
+    private $dbName = "centralplay";
 
     public function connect()
     {

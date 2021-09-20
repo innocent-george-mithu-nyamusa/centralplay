@@ -13,91 +13,11 @@
 		<link rel="stylesheet" href="icons/fontawesome/css/fontawesome-all.min.css"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css"><!-- iconsmind.com Icons -->
 		
-		<title>SKRN - Media Streaming App</title>
+		<title>Select Plan | Central Play</title>
 	</head>
 	<body>
 		
-		<header id="masthead-pro">
-			<div class="container">
-				
-				<h1><a href="index.php"><img src="images/logo.png" alt="Logo"></a></h1>
-				
-				<nav id="site-navigation-pro">
-					<ul class="sf-menu">
-						<li class="normal-item-pro">
-							<a href="index.php">Home</a>
-						</li>
-						<li class="normal-item-pro">
-							<a href="dashboard-home.php">New Releases</a>
-							<!-- Sub-Menu Example >
-							<ul class="sub-menu">
-								<li class="normal-item-pro">
-									<a href="#!">Sub-menu item 1</a>
-								</li>
-								<li class="normal-item-pro">
-									<a href="#!">Sub-menu item 2</a>
-								</li>
-								<li class="normal-item-pro">
-									<a href="#!">Sub-menu item 3</a>
-								</li>
-							</ul> 
-							< End Sub-Menu example -->
-						</li>
-						<li class="normal-item-pro current-menu-item">
-							<a href="signup-step1.php">Pricing Plans</a>
-						</li>
-						<li class="normal-item-pro">
-							<a href="faqs.php">FAQs</a>
-						</li>
-					</ul>
-				</nav>
-				
-				<a href="signup-step1.php" class="btn btn-header-pro btn-green-pro noselect">Start a Free Trial</a>
-				
-				<button class="btn btn-header-pro noselect" data-toggle="modal" data-target="#LoginModal" role="button">Sign In</button>
-				
-				<div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
-				
-				<div class="clearfix"></div>
-			</div><!-- close .container -->
-			
-			<nav id="mobile-navigation-pro">
-			
-				<ul id="mobile-menu-pro">
-					<li>
-						<a href="index.php">Home</a>
-					</li>
-					<li>
-						<a href="dashboard-home.php">New Releases</a>
-						<!-- Mobile Sub-Menu Example >
-						<ul>
-							<li class="normal-item-pro">
-								<a href="#!">Sub-menu item 1</a>
-							</li>
-							<li class="normal-item-pro">
-								<a href="#!">Sub-menu item 2</a>
-							</li>
-							<li class="normal-item-pro">
-								<a href="#!">Sub-menu item 3</a>
-							</li>
-						</ul>
-						< End Mobile Sub-Menu Example -->
-					</li>
-					<li>
-						<a href="signup-step1.php">Pricing Plans</a>
-					</li>
-					<li>
-						<a href="faqs.php">FAQs</a>
-					</li>
-				</ul>
-				<div class="clearfix"></div>
-			
-				<button class="btn btn-mobile-pro btn-green-pro noselect" data-toggle="modal" data-target="#LoginModal" role="button">Sign In</button>
-			
-			</nav>
-		</header>
-		
-
+		<?php include "includes/header.php"; ?>
 		<div id="content-pro">
 			
   	 		<div class="container">
@@ -149,39 +69,28 @@
 							<div class="row">
 								<div class="col-sm">
 									<div class="pricing-table-col">
-										<h6>FREE TRIAL</h6>
-										<h2>Free</h2>
+										<h6>RTGS PLAN</h6>
+										<h2><sup>RTGS</sup>420<span> / month</span></h2>
 										<ul>
-											<li>720p Available</li>
+											<li>Utra HD Available</li>
 											<li>Watch on any Device</li>
-											<li>20 Movies and Shows</li>
-											<li>Download Available</li>
-										</ul>
-										<p><a class="btn" href="signup-step2.php" role="button">Choose Plan</a></p>
-									</div><!-- close .pricing-table-col -->
-								</div><!-- close .col-md-12 -->
-								<div class="col-sm">
-									<div class="pricing-table-col">
-										<h6>STARTER</h6>
-										<h2><sup>$</sup>10<span> / month</span></h2>
-										<ul>
-											<li>HD Available</li>
-											<li>Watch on any Device</li>
-											<li>70 Movies and Shows</li>
-											<li>Download Available</li>
+											<li>Full Season</li>
+                                            <li>HD also Available</li>
+                                            <li>One Time For Any Season</li>
 										</ul>
 										<p><a class="btn btn-green-pro" href="signup-step2.php" role="button">Choose Plan</a></p>
 									</div><!-- close .pricing-table-col -->
 								</div><!-- close .col-md-12 -->
 								<div class="col-sm">
 									<div class="pricing-table-col">
-										<h6>PREMIUM</h6>
-										<h2><sup>$</sup>14<span> / month</span></h2>
+										<h6>US PLAN</h6>
+										<h2><sup>$</sup>3<span> / month</span></h2>
 										<ul>
 											<li>Ultra HD Available</li>
 											<li>Watch on any Device</li>
-											<li>Unlimited Movies and Shows</li>
-											<li>Download Available</li>
+											<li>All Seasons</li>
+                                            <li>HD also Available</li>
+                                            <li>One Time For Any Season</li>
 										</ul>
 										<p><a class="btn" href="signup-step2.php" role="button">Choose Plan</a></p>
 									</div><!-- close .pricing-table-col -->
@@ -195,81 +104,13 @@
 			
 		</div><!-- close #content-pro -->
 		
-		<footer id="footer-pro">
-			<div class="container">
-				<div class="row">
-					<div class="col-md">
-						<div class="copyright-text-pro">&copy; Copyright 2018 SKRN. All Rights Reserved</div>
-					</div><!-- close .col -->
-					<div class="col-md">
-						<ul class="social-icons-pro">
-							<li class="facebook-color"><a href="http://facebook.com/progressionstudios" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
-							<li class="twitter-color"><a href="http://twitter.com/Progression_S" target="_blank"><i class="fab fa-twitter"></i></a></li>
-							<li class="youtube-color"><a href="http://youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a></li>
-							<li class="vimeo-color"><a href="http://vimeo.com/" target="_blank"><i class="fab fa-vimeo-v"></i></a></li>
-						</ul>
-					</div><!-- close .col -->
-				</div><!-- close .row -->
-			</div><!-- close .container -->
-		</footer>
+        <?php include "includes/footer.php"; ?>
 		
 		<a href="#0" id="pro-scroll-top"><i class="fas fa-chevron-up"></i></a>
-		
-		
-		<!-- Modal -->
-		<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModal" aria-hidden="true">
-			 <button type="button" class="close float-close-pro" data-dismiss="modal" aria-label="Close">
-			           <span aria-hidden="true">&times;</span>
-			</button>
-		  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-		    <div class="modal-content">
-				 <div class="modal-header-pro">
-					 <h2>Welcome Back</h2>
-					 <h6>Sign in to your account to continue using SKRN</h6>
-				 </div>
-				 <div class="modal-body-pro social-login-modal-body-pro">
-					 
-					 <div class="registration-social-login-container">
-						 <form>
-							 <div class="form-group">
-								 <input type="text" class="form-control" id="username" placeholder="Username">
-							 </div>
-							 <div class="form-group">
-								 <input type="password" class="form-control" id="password" placeholder="Password">
-							 </div>
-							 <div class="form-group">
-								 <button type="button" class="btn btn-green-pro btn-display-block">Sign In</button>
-							 </div>
-							 <div class="container-fluid">
-								 <div class="row no-gutters">
-							 		<div class="col checkbox-remember-pro"><input type="checkbox" id="checkbox-remember"><label for="checkbox-remember" class="col-form-label">Remember me</label></div>
-									<div class="col forgot-your-password"><a href="#!">Forgot your password?</a></div>
-								</div>
-							</div><!-- close .container-fluid -->
-						
-						 </form>
-					 
-						 <div class="registration-social-login-or">or</div>
-						 
-					 </div><!-- close .registration-social-login-container -->
-					 
-					 <div class="registration-social-login-options">
-					 	<h6>Sign in with your social account</h6>
-						<div class="social-icon-login facebook-color"><i class="fab fa-facebook-f"></i> Facebook</div>
-						<div class="social-icon-login twitter-color"><i class="fab fa-twitter"></i> Twitter</div>
-						<div class="social-icon-login google-color"><i class="fab fa-google-plus-g"></i> Google</div>
-					 </div><!-- close .registration-social-login-options -->
-					 
-					 <div class="clearfix"></div>
-					 
 
- 		      </div><!-- close .modal-body -->
-				
-			 <a class="not-a-member-pro" href="signup-step2.php">Not a member? <span>Join Today!</span></a>
-		    </div><!-- close .modal-content -->
-		  </div><!-- close .modal-dialog -->
-		</div><!-- close .modal -->
-		
+		<!-- Modal -->
+        <?php include "includes/loginModal.php"; ?>
+		<!-- close .modal -->
 
 		<!-- Required Framework JavaScript -->
 		<script src="js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
@@ -281,7 +122,7 @@
 		<script src="js/navigation.js" defer></script><!-- Header Navigation JS -->
 		<script src="js/jquery.flexslider-min.js" defer></script><!-- Custom Document Ready JS -->		
 		<script src="js/script.js" defer></script><!-- Custom Document Ready JS -->
-		
+        <?php  include "includes/userRegistration.php"; ?>
 	</body>
 
 <!-- Mirrored from progression-studios.com/skrn/signup-step1.php by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 08 Sep 2021 14:39:42 GMT -->
