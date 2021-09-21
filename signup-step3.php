@@ -248,7 +248,7 @@ if(!isset($_SESSION["paymentPlan"])) {
                             <form id="ecocash_payment_form" name="ecocash_payment_form">
                                 <div class="form-group">
                                     <label for="ecocashNumber" class="col-form-label">Ecocash Number</label>
-                                    <input type="text" class="form-control" id="ecocashNumber" placeholder="Example: +263778900000">
+                                    <input type="text" class="form-control" id="ecocashNumber" name="ecocashNumber" placeholder="Example: +263778900000">
                                 </div>
 
                                 <div class="form-group">

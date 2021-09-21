@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Classes;
 
 
@@ -8,7 +7,7 @@ use DateInterval;
 use DateTime;
 use Exception;
 
-class Subscription extends Dbh
+class UserSubscription extends Dbh
 {
     private string $subscriptionId;
     private string $subscriberId;
@@ -19,7 +18,7 @@ class Subscription extends Dbh
     /**
      * @param float $subscriptionAmount
      */
-    public function setSubscriptionAmount(float $subscriptionAmount): void
+    protected function setSubscriptionAmount(float $subscriptionAmount): void
     {
         $this->subscriptionAmount = $subscriptionAmount;
     }
@@ -27,7 +26,7 @@ class Subscription extends Dbh
     /**
      * @param string $subscriptionResourceId
      */
-    public function setSubscriptionResourceId(string $subscriptionResourceId): void
+    protected function setSubscriptionResourceId(string $subscriptionResourceId): void
     {
         $this->subscriptionResourceId = $subscriptionResourceId;
     }

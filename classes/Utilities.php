@@ -115,8 +115,14 @@ class Utilities
             case "fin":
                 $pref = "fnr";
                 break;
+            case "crd":
+                $pref = "crd";
+                break;
             case "clm":
                 $pref = "mcl";
+                break;
+            case "mob":
+                $pref = "mbo";
                 break;
             default:
                 $pref = "use";
