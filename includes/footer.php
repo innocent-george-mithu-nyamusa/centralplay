@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md">
-                <div class="copyright-text-pro">&copy; Copyright 2018 SKRN. All Rights Reserved</div>
+                <div class="copyright-text-pro">&copy; Copyright 2018-<?php echo date("Y") ?> Central Play. All Rights Reserved</div>
             </div><!-- close .col -->
             <div class="col-md">
                 <ul class="social-icons-pro">

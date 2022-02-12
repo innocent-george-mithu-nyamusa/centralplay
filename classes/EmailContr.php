@@ -4,15 +4,31 @@ namespace Classes;
 
 class EmailContr extends Emailer
 {
-    public function __construct($name, $email, $message)
+
+    protected function setCRecipientEmail(string $recipientEmail): void
     {
-        $utility = new Utilities();
-        $messageHtml = Utilities::$ourMailhtml;
+        $recipientEmail = Utilities::cleanData($recipientEmail);
+        parent::setRecipientEmail($recipientEmail);
+    }
 
-        $name = $utility::cleanData($name);
-        $email = $utility::cleanData($email);
-        $message = $utility::cleanData($message);
+    protected function setCRecipientName(string $recipientName): void
+    {
+        $recipientName = Utilities::cleanData($recipientName);
+        parent::setRecipientName($recipientName);
+    }
 
-        parent::__construct($name, $email, $message, $messageHtml);
+    protected function setCVerificationCode(): void
+    {
+
+        $utilities  = new Utilities();
+        $verificationCode =$utilities->generateCode();
+
+        parent::setVerificationCode($verificationCode);
+    }
+
+    protected function setCUserVerificationId(string $userVerificationId): void
+    {
+        $userVerificationId = Utilities::cleanData($userVerificationId);
+        parent::setUserVerificationId($userVerificationId);
     }
 }

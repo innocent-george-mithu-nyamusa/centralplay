@@ -1,8 +1,5 @@
 <!doctype html>
 <html lang="en">
-	<?php
-    session_start()
-    ?>
 <head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,7 +11,7 @@
 		<link rel="stylesheet" href="icons/fontawesome/css/fontawesome-all.min.css"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css"><!-- iconsmind.com Icons -->
 		
-		<title> Welcome | Central Play</title>
+		<title> Password Reset | Central Play</title>
 	</head>
 	<body>
 		
@@ -30,27 +27,34 @@
 							<div class="registration-step-final-padding welcome-page-styles">
 								
 								<div class="centered-headings-pro pricing-plans-headings">
-									<h6>Sign up complete!</h6>
-									<h1>Welcome to Cetral Play!</h1>
+									<h6>Password Reset!</h6>
+									<h1>Reset password to access your Account!</h1>
 								</div>
 								
-								<h6 class="welcome-style-summary">You can now start watching TV shows.</h6>
-								<h6 class="welcome-style-summary">Your next billing information will be sent on your email on <?php echo $_SESSION["subscriptionExpirationDate"] ?></h6>
-								
-								<h3 class="welcome-plan-title">Your Plan: <span><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?></span></h3>
-								
-								<ul class="welcome-features">
-                                    <li>Ultra HD Available</li>
-                                    <li>Watch on any Device</li>
-                                    <li>Full Seasons</li>
-                                    <li>HD also Available</li>
-                                    <li>One Time Payment For Any Season</li>
-								</ul>
+								<h6 class="welcome-style-summary">Enter your existing email to reset your password
+                                </h6>
+                                <div class="form-group align-items-center">
+                                    <div id='mail_success' class='success text-center'>Email Successfully sent.</div>
+                                    <div id='mail_fail' class='error text-center' >Password Reset Failed!.</div>
+                                </div>
+                                <form id="password_reset_form">
+                                    <div class="form-group">
+                                        <input type="email" name="email_reset_password" class="form-control" id="email_reset_password" placeholder="Your Email">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" name="password_reset" id="password_reset_button" class="btn btn-green-pro btn-display-block">Reset Password</button>
+                                    </div>
+                                    <div class="container-fluid">
+                                        <div class="row no-gutters">
+                                            <div class="col forgot-your-password"><a href="index.php">Login In Instead</a></div>
+                                        </div>
+                                    </div><!-- close .container-fluid -->
+                                </form>
 								<div class="clearfix"></div>
 								
 								<div class="registration-step-final-footer">
-									<button id="btnMakePayment" class="btn btn-green-pro">Make Payment</button>
-									<button id="btnVerifyEmail" class="btn">Verify Your Email</button>
+									<a href="signup-step1.php" class="btn">Create Account</a>
+									<a href="index.php" class="btn">Login In Into account</a>
 								</div>
 								
 							</div><!-- close .registration-step-final-padding -->
@@ -83,7 +87,7 @@
 		<script src="js/navigation.js" defer></script><!-- Header Navigation JS -->
 		<script src="js/jquery.flexslider-min.js" defer></script><!-- Custom Document Ready JS -->		
 		<script src="js/script.js" defer></script><!-- Custom Document Ready JS -->
-        <script src="js/payments.js" ></script>
+        <script src="js/authentication.js" ></script>
 		
 	</body>
 

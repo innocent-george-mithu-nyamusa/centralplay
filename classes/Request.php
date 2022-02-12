@@ -132,7 +132,7 @@ class Request extends Dbh
             return $createItemStmt->execute();
         } catch (Exception $exception) {
 
-            echo "Failed to create Item Request \n" . $exception->getMessage();
+            echo "Failed to create Movie Request \n" . $exception->getMessage();
             return false;
         }
     }
@@ -168,7 +168,7 @@ class Request extends Dbh
             );
             return $updateItemStmt->execute();
         } catch (Exception $exception) {
-            echo "Failed to update Item:\n" . $exception->getMessage();
+            echo "Failed to update Movie:\n" . $exception->getMessage();
             return false;
         }
 

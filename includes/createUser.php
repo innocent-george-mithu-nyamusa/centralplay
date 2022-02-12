@@ -12,7 +12,7 @@ session_start();
 
 include_once "../vendor/autoload.php";
 
-if(isset($_POST)) {
+if (isset($_POST)) {
 
     $utilities = new Utilities();
     $signUpObj = new SignUpView();
@@ -21,18 +21,29 @@ if(isset($_POST)) {
     $cardObj = new CardView();
     $mobileObj = new MobileView();
 
+    $dateExpired = new DateTime("now");
+    $dateExpired = $dateExpired->add(new DateInterval('P30D'));
+    $dateExpired = $dateExpired->format("Y-m-d");
 
-    if (isset($_POST["cardRegister"])) {
+    if (isset($_POST["cardHolderFullName"])) {
 
-        $username = explode(" ", $_POST["user_fullname"]);
-
+        $username = explode(" ", $_SESSION["userDetailFullName"]);
         if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"])) {
-            if ($cardObj->createCard($_POST["cardNumber"], $_POST["cardCvv"], $_SESSION["userDetailEmail"], $_POST["cardHolderFullName"], $_POST["cardExpiry"], $_POST["cardZip"]) && $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $_SESSION["userDetailEmail"])) {
+            $userId = $signUpObj->getUserId($_SESSION["userDetailEmail"]);
+
+            if (!$userId) {
+                $userId = $_SESSION["userDetailEmail"];
+            }
+
+            $_SESSION["user_id"] = $userId;
+            if ($cardObj->createCard($_POST["cardNumber"], $_POST["cardCvv"], $userId, $_POST["cardHolderFullName"], $_POST["cardExpire"], $_POST["cardZip"]) && $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $userId)) {
+
+                $_SESSION["centralplay"] = true;
+                $_SESSION["subscriptionExpirationDate"] = $dateExpired;
                 echo 1;
             } else {
                 echo 0;
             }
-
         } else {
             echo 0;
         }
@@ -41,11 +52,23 @@ if(isset($_POST)) {
 
     if (isset($_POST["zipitRegister"])) {
 
-        $username = explode(" ", $_POST["user_fullname"]);
+        $username = explode(" ", $_SESSION["userDetailFullName"]);
 
         if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"])) {
-            if ($cardObj->createCard($_POST["zipitCardNumber"], $_POST["zipitCvv"], $_SESSION["userDetailEmail"], $_POST["zipitCardHolderFullName"], $_POST["zipitExpire"], $_POST["zipitZip"]) &&
-                $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $_SESSION["userDetailEmail"])) {
+
+            $userId = $signUpObj->getUserId($_SESSION["userDetailEmail"]);
+
+            if (!$userId) {
+                $userId = $_SESSION["userDetailEmail"];
+            }
+
+            $_SESSION["user_id"] = $userId;
+            if ($cardObj->createCard($_POST["zipitCardNumber"], $_POST["zipitCvv"], $userId, $_POST["zipitCardHolderFullName"], $_POST["zipitExpire"], $_POST["zipitZip"]) &&
+                $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $userId)) {
+
+                $_SESSION["centralplay"] = true;
+                $_SESSION["subscriptionExpirationDate"] = $dateExpired;
+
                 echo 1;
             } else {
                 echo 0;
@@ -56,19 +79,56 @@ if(isset($_POST)) {
         }
     }
 
-    if (isset($_POST["ecocashRegister"])) {
-        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"]) &&
-            $mobileObj->createMobileOption($_POST["ecocashNumber"], $_SESSION["userDetailEmail"], "ecocash", $_SESSION["paymentPlan"])) {
-            echo 1;
-        } else {
+    if (isset($_POST["ecocashNumber"])) {
+
+        $username = explode(" ", $_SESSION["userDetailFullName"]);
+
+        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"])) {
+
+            $userId = $signUpObj->getUserId($_SESSION["userDetailEmail"]);
+
+            if (!$userId) {
+                $userId = $_SESSION["userDetailEmail"];
+            }
+            $_SESSION["user_id"] = $userId;
+
+            if ($mobileObj->createMobileOption($_POST["ecocashNumber"], $userId, "ecocash", $_SESSION["paymentPlan"]) &&
+                $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $userId)) {
+
+                $_SESSION["centralplay"] = true;
+                $_SESSION["subscriptionExpirationDate"] = $dateExpired;
+                echo 1;
+            } else {
+                echo 0;
+            }
+
+        }else {
             echo 0;
         }
     }
 
     if (isset($_POST["telecashRegister"])) {
-        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"]) &&
-            $mobileObj->createMobileOption($_POST["telecashNumber"], $_SESSION["userDetailEmail"], "telecash", $_SESSION["paymentPlan"])) {
-            echo 1;
+
+        $username = explode(" ", $_SESSION["userDetailFullName"]);
+
+        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"])) {
+
+            $userId = $signUpObj->getUserId($_SESSION["userDetailEmail"]);
+
+            if (!$userId) {
+                $userId = $_SESSION["userDetailEmail"];
+            }
+
+            $_SESSION["user_id"] = $userId;
+            if ($mobileObj->createMobileOption($_POST["telecashNumber"], $userId, "telecash", $_SESSION["paymentPlan"]) &&
+                $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $userId)) {
+                $_SESSION["centralplay"] = true;
+                $_SESSION["subscriptionExpirationDate"] = $dateExpired;
+                echo 1;
+            } else {
+                echo 0;
+            }
+
         } else {
             echo 0;
         }
@@ -76,14 +136,35 @@ if(isset($_POST)) {
 
     if (isset($_POST["onemoneyRegister"])) {
 
-        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"]) &&
-            $mobileObj->createMobileOption($_POST["oneMoneyNumber"], $_SESSION["userDetailEmail"], "onemoney", $_SESSION["paymentPlan"])) {
-            echo 1;
+        $username = explode(" ", $_SESSION["userDetailFullName"]);
+
+        if ($signUpObj->createUser($username[0], $_SESSION["userDetailFullName"], 'no_phone', $_SESSION["userDetailEmail"], $_SESSION["userDetailPassword"])) {
+            $userId = $signUpObj->getUserId($_SESSION["userDetailEmail"]);
+
+            if (!$userId) {
+                $userId = $_SESSION["userDetailEmail"];
+            }
+
+            $_SESSION["user_id"] = $userId;
+
+
+            if ($mobileObj->createMobileOption($_POST["oneMoneyNumber"], $userId, "onemoney", $_SESSION["paymentPlan"]) &&
+                $subscriptionObj->createUserSubscription($_SESSION["paymentPlan"], $_SESSION["paymentPlan"], "no_resource", $userId)) {
+
+                $_SESSION["centralplay"] = true;
+                $_SESSION["subscriptionExpirationDate"] = $dateExpired;
+
+                echo 1;
+            } else {
+                echo 0;
+            }
+
         } else {
             echo 0;
         }
     }
 
-}else {
-    echo 0;
+
+} else {
+    echo "failed to see post";
 }

@@ -50,5 +50,10 @@ class SignUpView extends SignUpContr
         return $this->status;
     }
 
+    public function getUserId(string $email): string|bool {
+        $this->getEmail($email);
+        return parent::getUserIdStatus();
+    }
+
 
 }

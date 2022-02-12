@@ -1,4 +1,11 @@
+<?php
 
+use Classes\Utilities;
+
+include "vendor/autoload.php";
+$utilities = new Utilities();
+
+?>
 <header id="masthead-pro">
     <div class="container">
 
@@ -20,10 +27,15 @@
                 </li>
             </ul>
         </nav>
-
+        <?php if($utilities::isLoggedIn()){ ?>
         <button class="btn btn-header-pro noselect" data-toggle="modal" data-target="#LoginModal" role="button">Sign
             In
             </button>
+            <?php }else { ?>
+            <a href="includes/logout.php" class="btn btn-header-pro noselect" role="button">Logout
+            </a>
+        <?php } ?>
+
 
         <div id="mobile-bars-icon-pro" class="noselect"><i class="fas fa-bars"></i></div>
 
@@ -31,7 +43,7 @@
     </div><!-- close .container -->
 
     <nav id="mobile-navigation-pro">
-
+        <?php session_start()?>
         <ul id="mobile-menu-pro">
             <li>
                 <a href="index.php">Home</a>
@@ -61,9 +73,19 @@
         </ul>
         <div class="clearfix"></div>
 
+        <?php if(!$utilities::isLoggedIn()){
+
+            ?>
         <button class="btn btn-mobile-pro btn-green-pro noselect" data-toggle="modal" data-target="#LoginModal"
                 role="button">Sign In
-</button>
+        </button>
+        <?php } else {
+            echo "toolsie slide logged in";
+            ?>
+            <a class="btn btn-mobile-pro btn-green-pro noselect" href="includes/logout.php"
+                    role="button">Logout
+            </a>
+        <?php } ?>
 
     </nav>
 </header>

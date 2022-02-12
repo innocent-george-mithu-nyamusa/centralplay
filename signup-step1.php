@@ -87,7 +87,7 @@
 										<ul>
 											<li>Ultra HD Available</li>
 											<li>Watch on any Device</li>
-											<li>All Seasons</li>
+											<li>Full Seasons</li>
                                             <li>HD also Available</li>
                                             <li>One Time For Any Season</li>
 										</ul>

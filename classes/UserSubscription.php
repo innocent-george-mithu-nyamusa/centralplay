@@ -63,8 +63,9 @@ class UserSubscription extends Dbh
 
         try {
             $dateCreate = new DateTime('now');
+            $dateExpired = new DateTime("now");
 
-            $dateExpired = $dateCreate->add(new DateInterval('P30D'));
+            $dateExpired = $dateExpired->add(new DateInterval('P30D'));
 
             $dateCreate = $dateCreate->format("Y-m-d");
             $dateExpired = $dateExpired->format("Y-m-d");

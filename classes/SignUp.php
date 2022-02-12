@@ -16,6 +16,7 @@ class SignUp extends Dbh
     private string $user_password;
     private string $phone;
 
+
     //adds a new user to database
 
     /**
@@ -101,6 +102,26 @@ class SignUp extends Dbh
         }catch (Exception $exception) {
 
             echo "Failed to create user". $exception->getMessage();
+            return false;
+        }
+    }
+
+    protected function getUserIdStatus(): string|bool {
+        return $this->getUserId();
+    }
+
+    private function getUserId(): string|bool {
+        try {
+            $user_id_query = "SELECT user_id FROM user WHERE user_email=:userEmail";
+            $user_id_stmt = $this->connect()->prepare($user_id_query);
+            $user_id_stmt->bindParam("userEmail", $this->user_email);
+            $user_id_stmt->execute();
+            $userId = $user_id_stmt->fetchColumn();
+            $user_id_stmt->closeCursor();
+            return $userId;
+        }catch (Exception $exception) {
+
+            echo "Failed to get user id ". $exception->getMessage();
             return false;
         }
     }

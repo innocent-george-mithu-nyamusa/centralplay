@@ -11,6 +11,7 @@ class CategoryContr extends Category
     private $cId;
 
 
+
     protected function addId($id)
     {
         $this->cId = Utilities::cleanData($id);
@@ -32,4 +33,17 @@ class CategoryContr extends Category
     {
         $this->setCategoryName($this->cName);
     }
+
+    protected function setCCategoryImage(string $categoryImage): void
+    {
+        $categoryImage = Utilities::cleanData($categoryImage);
+        parent::setCategoryImage($categoryImage);
+    }
+
+    protected function setCCategoryIcon(string $categoryIcon): void
+    {
+        $categoryIcon = Utilities::cleanData($categoryIcon);
+        parent::setCategoryIcon($categoryIcon);
+    }
+
 }

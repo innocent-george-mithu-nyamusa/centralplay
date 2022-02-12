@@ -1,0 +1,30 @@
+php_flag display_startup_errors on
+php_flag display_errors on
+php_flag html_errors on
+
+php_flag autostart
+
+RewriteEngine on
+
+DirectoryIndex index.php
+
+RewriteRule ^$ index.php [NC,L]
+RewriteRule ^login_account$ login.php [NC,L]
+RewriteRule ^sign_in_account$ sign_up.php [NC,L]
+RewriteRule ^logout_account$ logout.php [NC,L]
+
+RewriteRule ^course-track/([A-Za-z0-9-]+)/?$ item.php?it_id=$1 [NC,L]
+
+RewriteRule ^me/([A-Za-z0-9-]+)/?$ includes/user_profile.php?user_id=$1
+RewriteRule ^me/up/([A-Za-z0-9-]+)/?$ includes/user_profile.php?src=update_user&user_id=$1
+
+RewriteRule ^me/ar/$ includes/user_profile.php?src=add_request [NC,L]
+
+RewriteRule ^adminstration/$ admin/admin.php
+RewriteRule ^adminstration/(add_item|update_item|delete_item|all_items_operations|all_categories|add_category|user_items|users_overview|rewards_overview)$ admin/admin.php?src=$1 [NC,L]
+
+RewriteRule ^adminstration/Ucat/([A-Za-z0-9-]+)/?$ admin/admin.php?src=update_category&cat_id=$1 [NC,L]
+
+
+RewriteRule ^adminstration/Uit/([A-Za-z0-9-]+)/?$ admin/admin.php?src=update_item&it_id=$1 [NC,L]
+RewriteRule ^adminstration/Dit/([A-Za-z0-9-]+)/?$ admin/admin.php?src=delete_item&it_id=$1 [NC,L]

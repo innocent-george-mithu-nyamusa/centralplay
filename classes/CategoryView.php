@@ -10,11 +10,14 @@ class CategoryView extends CategoryContr
 
     }
 
-    public function createCategory($catName) :bool
+    public function createCategory(string $catName, string $categoryIcon, string $categoryImage) :bool
     {
         $id = Utilities::genUniqueId("cat");
         $this->addId($id);
         $this->addName($catName);
+        $this->setCCategoryIcon($categoryIcon);
+        $this->setCCategoryImage($categoryImage);
+
         return $this->createCategoryResult();
     }
 
@@ -34,7 +37,7 @@ class CategoryView extends CategoryContr
 
     public function getCategories(): ?array
     {
-        return $this->getCategoriesReult();
+        return $this->getCategoriesResult();
 
     }
 

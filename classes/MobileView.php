@@ -6,7 +6,7 @@ namespace Classes;
 
 class MobileView extends MobileContr
 {
-    public function createMobileOption(string $mobileNumber, string $ownerId, string $mobilePaymentType, string $mobileAccType): bool
+    public function createMobileOption(string $mobileNumber, string $ownerId,  string $mobileAccType, string $mobilePaymentType): bool
     {
         $this->setCMobileNumber($mobileNumber);
         $this->setCMobileNumberOwner($ownerId);

@@ -2,49 +2,180 @@
 
 namespace Classes;
 
+use DateTime;
 use Exception;
 use Verot\Upload\Upload;
 
 class Utilities
 {
 
+//    TODO::ADD EMAIL TEMPLATES
     public static $ourMailhtml = '';
-    public static $ourMailText = 'Thank you For Getting In Touch. \n We are Glad to hear from You. How can we Help You?.\n Need Help Migrating to The Cloud? Need a Mobile Application?.\n Need IOT Integration ? Need Multi-Platform Software ? \n . Then Get in touch With Us . We would be glad To communicate with you.';
+    public static $accountVerificationText = "\nThank You for Signing up with central Play. Click the following link to reset your account. \n";
+    public static $accountPasswordResetText = "Password Reset Request\n\nPlease Click the following Link to reset your account. ";
+    public static $accountPasswordResetHtml = "password html";
+    public static $accountPasswordResetSubect = "Password Reset Request";
+    public static $ourMailText = "";
 
-    public static function uploadPhoto($item_image, $item_image_temp, $purpose): string|bool
+    public static $emailVerificationSubject = "Thanks for Signing Up with Central Play. Please Verify your Account";
+    public static $emailverificationHtml = "<html> Html </html>";
+
+    public static function uploadPhoto($image, $image_temp, $purpose): string|bool
     {
-        $handle = new Upload($item_image);
+        $handle = new Upload($image);
 
         switch ($purpose) {
-            case "item":
-                $target_dir = "../assets/img/items/";
-                break;
-            case "request":
-                $target_dir = "../../images/";
-                break;
+            case "movie_image_small":
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_small";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 450;
+                $handle->image_y = 620;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+            case "movie_image_large":
+
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_large";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 1767;
+                $handle->image_y = 687;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "movie_poster":
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_poster";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 1442;
+                $handle->image_y = 775;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "movie_still_picture":
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_still_image";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 500;
+                $handle->image_y = 300;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "movie_trailer_picture":
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_trailer";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 500;
+                $handle->image_y = 300;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "movie_trailer_interview":
+                $target_dir = "../movies/movieImages/";
+
+                $name = self::genUniqueId("img")."_interview";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 500;
+                $handle->image_y = 300;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "user_image":
+                $target_dir = "../user/userImages/";
+
+                $name = self::genUniqueId("use")."_user";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 500;
+                $handle->image_y = 300;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
+            case "episode_image":
+                $target_dir = "../series/episodesImages/";
+
+                $name = self::genUniqueId("img")."_episode";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 500;
+                $handle->image_y = 300;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
+
             default:
-                $target_dir = "../assets/img/users/";
+                $target_dir = "../actors/";
+
+                $name = self::genUniqueId("img")."_actor";
+                $handle->file_dst_name_body = $name;
+                $handle->image_size = true;
+                $handle->image_x = 50;
+                $handle->image_y = 50;
+                $handle->process(__DIR__ . $target_dir);
+                if ($handle->processed) {
+                    return $name;
+                } else {
+                    echo "error: " . $handle->error;
+                    return false;
+                }
 
         }
 
-        $picName = $item_image;
-        $target_file = $target_dir . $picName;
-        $uploadOk = 1;
-        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+//        $picName = $image;
 
-        $name = self::genUniqueId("img");
-        $handle->file_dst_name_body = $name;
-        $handle->image_size = true;
-        $handle->image_x = 1200;
-        $handle->image_y = 1200;
-        $handle->process(__DIR__ . $target_dir);
-        if ($handle->processed) {
-            return $name;
-        } else {
-            echo "error: " . $handle->error;
-            return false;
-        }
-
+//                $target_file = $target_dir . $picName;
+//                $uploadOk = 1;
+//                $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 //            // Check if image file is a actual image or fake image
 //            $check = getimagesize($item_image_temp);
 //            if ($check !== false) {
@@ -85,17 +216,9 @@ class Utilities
     public static function genUniqueId(string $pref): string
     {
         switch ($pref) {
-            case "add":
-                $pref = "adi";
-                break;
-            case "app":
-                $pref = "apl";
-                break;
+
             case "res":
                 $pref = "rse";
-                break;
-            case "itm":
-                $pref = "ite";
                 break;
             case "img":
                 $pref = "img";
@@ -103,17 +226,11 @@ class Utilities
             case "cat":
                 $pref = "cat";
                 break;
-            case "rew":
-                $pref = "rwe";
-                break;
-            case "req":
-                $pref = "rqe";
-                break;
             case "sub":
                 $pref = "sbu";
                 break;
-            case "fin":
-                $pref = "fnr";
+            case "mov":
+                $pref = "mve";
                 break;
             case "crd":
                 $pref = "crd";
@@ -123,6 +240,12 @@ class Utilities
                 break;
             case "mob":
                 $pref = "mbo";
+                break;
+            case "eps":
+                $pref = "epi";
+                break;
+            case "ser":
+                $pref = "ser";
                 break;
             default:
                 $pref = "use";
@@ -135,18 +258,22 @@ class Utilities
         return $id;
     }
 
-    public static function deletePhoto($itemImage, $purpose): bool
+    public static function deletePhoto($image, $purpose): bool
     {
 
         switch ($purpose) {
-            case "item":
-                $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/LostAndFound/admin/assets/img/items/";
+
+            case "movie_image_small":
+                $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/centralplay/movies/movieImages/";
+                break;
+            case "movie_image_large":
+                $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/centralplay/movies/movieImages/";
                 break;
             default:
                 $target_dir = "/Applications/XAMPP/xamppfiles/htdocs/LostAndFound/admin/assets/img/user/";
         }
 
-        $filename = $target_dir . $itemImage;
+        $filename = $target_dir . $image;
 
         try {
             unlink($filename);
@@ -169,11 +296,12 @@ class Utilities
 
     public static function isLoggedIn(): bool
     {
-        if (isset($_SESSION["LostAndFound"])) {
+        if (isset($_SESSION["centralplay"])) {
             return true;
         } else {
             return false;
         }
+
     }
 
     public static function isAdmin(): bool
@@ -188,6 +316,24 @@ class Utilities
     public static function isDispatcher(string $dispatcherId): bool {
 
         if(($_SESSION["user_id"] == $dispatcherId) || self::isAdmin()){
+            return true;
+        }
+        return false;
+    }
+
+    public function generateCode() :string {
+        $id= uniqid("cde", TRUE);
+        $id = str_shuffle("$id");
+        return $id;
+
+    }
+
+
+    public function isSubscriptionValid(DateTime $expirationDate){
+
+        $currentDate = new \DateTime("now");
+        $currentDate = $currentDate->format("Y-m-d");
+        if($expirationDate > $currentDate){
             return true;
         }
         return false;

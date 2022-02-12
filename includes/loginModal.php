@@ -6,12 +6,15 @@
         <div class="modal-content">
             <div class="modal-header-pro">
                 <h2>Welcome Back</h2>
-                <h6>Sign in to your account to continue using SKRN</h6>
+                <h6>Sign in to your account to continue using Central Play</h6>
             </div>
             <div class="modal-body-pro social-login-modal-body-pro">
-
-                <div class="registration-social-login-container">
-                    <form>
+                    <div class="form-group align-items-center">
+                        <div id='mail_success' class='success text-center'>Login Successful.</div>
+                        <div id='mail_fail' class='error text-center' >Login Failed. Please Retry!. <br />Either Password or Email is Incorrect. </div>
+                    </div>
+<!--                <div class="registration-social-login-container">-->
+                    <form id="loginForm">
                         <div class="form-group">
                             <input type="email" name="modal_email_login" class="form-control" id="modal_email" placeholder="Email">
                         </div>
@@ -23,26 +26,25 @@
                         </div>
                         <div class="container-fluid">
                             <div class="row no-gutters">
-                                <div class="col checkbox-remember-pro"><input type="checkbox" id="checkbox-remember"><label for="checkbox-remember" class="col-form-label">Remember me</label></div>
                                 <div class="col forgot-your-password"><a href="#">Forgot your password?</a></div>
                             </div>
                         </div><!-- close .container-fluid -->
-
                     </form>
 
-                    <div class="registration-social-login-or">or</div>
+<!--                    <div class="registration-social-login-or">or</div>-->
 
-                </div><!-- close .registration-social-login-container -->
+<!--                </div>-->
+                <!-- close .registration-social-login-container -->
 
-                <div class="registration-social-login-options">
-                    <h6>Sign in with your social account</h6>
-                    <div class="social-icon-login facebook-color"><i class="fab fa-facebook-f"></i> Facebook</div>
-                    <div class="social-icon-login twitter-color"><i class="fab fa-twitter"></i> Twitter</div>
-                    <div class="social-icon-login google-color"><i class="fab fa-google-plus-g"></i> Google</div>
-                </div><!-- close .registration-social-login-options -->
+<!--                <div class="registration-social-login-options">-->
+<!--                    <h6>Sign in with your social account</h6>-->
+<!--                    <div class="social-icon-login facebook-color"><i class="fab fa-facebook-f"></i> Facebook</div>-->
+<!--                    <div class="social-icon-login twitter-color"><i class="fab fa-twitter"></i> Twitter</div>-->
+<!--                    <div class="social-icon-login google-color"><i class="fab fa-google-plus-g"></i> Google</div>-->
+<!--                </div>-->
+                <!-- close .registration-social-login-options -->
 
                 <div class="clearfix"></div>
-
 
             </div><!-- close .modal-body -->
 

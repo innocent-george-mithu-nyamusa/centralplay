@@ -4,6 +4,7 @@
 namespace Classes;
 
 
+use DateTime;
 use Exception;
 use PDO;
 
@@ -29,11 +30,12 @@ class User extends Dbh
     private string $newPassword;
     private float $earnings;
     private float $adminEarnings;
+    private string $verificationCode;
 
     /**
      * @param float $earnings
      */
-    public function setEarnings(float $earnings): void
+    protected function setEarnings(float $earnings): void
     {
         $this->earnings = $earnings;
     }
@@ -41,9 +43,14 @@ class User extends Dbh
     /**
      * @param float $adminEarnings
      */
-    public function setAdminEarnings(float $adminEarnings): void
+    protected function setAdminEarnings(float $adminEarnings): void
     {
         $this->adminEarnings = $adminEarnings;
+    }
+
+    protected function setVerificationCode(string $verificationCode)
+    {
+        $this->verificationCode = $verificationCode;
     }
 
     /**
@@ -227,7 +234,7 @@ class User extends Dbh
     private function updateUser()
     {
         try {
-            $updateUserQuery = "UPDATE user SET user_firstname=:firstname, user_lastname=:lastname, user_email=:email, user_dob=:DoB, user_image=:image, user_phone=:phone, ";
+            $updateUserQuery = "UPDATE user SET user_fullname=:firstname, user_email=:email, user_dob=:DoB, user_image=:image, user_phone=:phone  ";
             $updateUserQuery .= "user_building=:building, user_floor=:floor, user_street=:street, user_town=:town, user_country=:country, user_bio=:bio, user_linkedIn=:linkedIn, user_facebook=:facebook ";
             $updateUserQuery .= "WHERE user_id=:userId";
 
@@ -438,4 +445,85 @@ class User extends Dbh
             return false;
         }
     }
+
+    private function updateUserVerification(): bool {
+        try {
+            $updateUserStatusQuery = "UPDATE user SET user_status='verified' WHERE user_email=:userEmail";
+            $updateUserStatusStmt = $this->connect()->prepare($updateUserStatusQuery);
+            $updateUserStatusStmt->bindParam(":userEmail", $this->userEmail);
+            $result = $updateUserStatusStmt->execute();
+            $updateUserStatusStmt->closeCursor();
+            return $result;
+        }catch (Exception $exception){
+            echo "Failed to update user" . $exception->getMessage();
+            return false;
+        }
+    }
+    protected function userVerificationStatus(): bool {
+        return $this->verifyUser();
+    }
+
+    private function verifyUser(): bool {
+        $currentTime = new DateTime("now");
+        $currentTime = $currentTime->format("Y-m-d H:i");
+
+
+        try {
+            $verificationQuery = "SELECT COUNT(*), account_code_expiry FROM account_verification_codes WHERE account_verification_code=:accountVerificationCode AND account_email_verify=:accountUserEmail";
+            $verificationStmt = $this->connect()->prepare($verificationQuery);
+            $verificationStmt->bindParam(":accountVerificationCode", $this->verificationCode);
+            $verificationStmt->bindParam(":accountUserEmail", $this->userEmail);
+            $verificationStmt->execute();
+            $verifiedUser = $verificationStmt->fetchColumn();
+            $results = $verificationStmt->fetchAll(PDO::FETCH_ASSOC);
+
+            $verificationStmt->closeCursor();
+
+            if(!$results[0]["account_code_expiry"]) {
+                return false;
+            }
+
+            if($results[0]["account_code_expiry"] < $currentTime){
+                return false;
+            }
+
+            if($verifiedUser > 0 AND $this->updateUserVerification()) {
+
+                $removeVerificationQuery = "DELETE FROM account_verification_codes WHERE account_email_verify=:userEmail";
+                $removeVerificationStmt = $this->connect()->prepare($removeVerificationQuery);
+                $removeVerificationStmt->bindParam(":userEmail", $this->userEmail);
+                return $removeVerificationStmt->execute();
+            }
+            return false;
+        }catch (Exception $exception) {
+            echo "Failed to verify user ". $exception->getMessage();
+            return false;
+        }
+
+    }
+
+    protected function checkPasswordVerificationCodeStatus(): bool {
+        return $this->checkPasswordverificationCode();
+    }
+
+
+    private function checkPasswordVerificationCode(): bool {
+        try {
+            $passwordVerificationCodeCheckQuery = "SELECT COUNT(*) FROM password_reset_codes WHERE account_verification_code=:verificationCode";
+            $passwordVerificationCodeCheckStmt = $this->connect()->prepare($passwordVerificationCodeCheckQuery);
+            $passwordVerificationCodeCheckStmt->bindParam(":verificationCode", $this->verificationCode);
+            $passwordVerificationCodeCheckStmt->execute();
+            $codes = $passwordVerificationCodeCheckStmt->fetchColumn();
+            $passwordVerificationCodeCheckStmt->closeCursor();
+            if($codes > 0) {
+            return true;
+            }
+            return false;
+        }catch (Exception $exception) {
+            echo "Failed to verify password Verification code ". $exception->getMessage();
+            return false;
+        }
+    }
 }
+
+

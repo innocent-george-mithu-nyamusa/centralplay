@@ -2,7 +2,9 @@
 <html lang="en">
 <?php
 
-if(!isset($_SESSION["paymentPlan"])) {
+session_start();
+
+if(!isset($_SESSION["userDetailEmail"])) {
     header("Location: signup-step1.php");
 }
 
@@ -18,7 +20,6 @@ if(!isset($_SESSION["paymentPlan"])) {
 
     <link rel="stylesheet" href="icons/fontawesome/css/fontawesome-all.min.css"><!-- FontAwesome Icons -->
     <link rel="stylesheet" href="icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css">
-    <!-- iconsmind.com Icons -->
 
     <title>Sign Up - Bank Details | Lost And Found </title>
 </head>
@@ -235,7 +236,7 @@ if(!isset($_SESSION["paymentPlan"])) {
 
                                     <div class="billing-plan-container">
                                         <h5>Your Plan: <a href="signup-step1.php">Change plan</a></h5>
-                                        <h3>Premium: <span class="total">$14</span><span class="duration">/month</span>
+                                        <h3><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?>: <span class="total"><?php echo $_SESSION["paymentPlan"]=="us" ? "3": "420"; ?></span><span class="duration">/month</span>
                                         </h3>
                                     </div><!-- close .billing-plan-container -->
 
@@ -254,7 +255,7 @@ if(!isset($_SESSION["paymentPlan"])) {
                                 <div class="form-group">
                                     <div class="billing-plan-container">
                                         <h5>Your Plan: <a href="signup-step1.php">Change plan</a></h5>
-                                        <h3>Premium: <span class="total">$14</span><span class="duration">/month</span>
+                                        <h3><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?>: <span class="total"><?php echo $_SESSION["paymentPlan"]=="us" ? "3": "420"; ?></span><span class="duration">/month</span>
                                         </h3>
                                     </div><!-- close .billing-plan-container -->
 
@@ -273,7 +274,7 @@ if(!isset($_SESSION["paymentPlan"])) {
                                 <div class="form-group">
                                     <div class="billing-plan-container">
                                         <h5>Your Plan: <a href="signup-step1.php">Change plan</a></h5>
-                                        <h3>Premium: <span class="total">$14</span><span class="duration">/month</span>
+                                        <h3><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?>: <span class="total"><?php echo $_SESSION["paymentPlan"]=="us" ? "3": "420"; ?></span><span class="duration">/month</span>
                                         </h3>
                                     </div><!-- close .billing-plan-container -->
 
@@ -291,7 +292,7 @@ if(!isset($_SESSION["paymentPlan"])) {
                                 <div class="form-group">
                                     <div class="billing-plan-container">
                                         <h5>Your Plan: <a href="signup-step1.php">Change plan</a></h5>
-                                        <h3>Premium: <span class="total">$14</span><span class="duration">/month</span>
+                                        <h3><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?>: <span class="total"><?php echo $_SESSION["paymentPlan"]=="us" ? "3": "420"; ?></span><span class="duration">/month</span>
                                         </h3>
                                     </div>
 

@@ -67,9 +67,13 @@ class Mobile extends Dbh
             $createMobilePaymentStmt->bindParam(":mobileNumber", $this->mobileNumber);
             $createMobilePaymentStmt->bindParam(":mobileOwner", $this->mobileNumberOwner);
             $createMobilePaymentStmt->bindParam(":mobilePaymentType", $this->mobilePaymentType);
+            $result = $createMobilePaymentStmt->execute();
+            $createMobilePaymentStmt->closeCursor();
 
+            return $result;
         }catch (\Exception $exception) {
             echo "Failed to create mobile payment option ". $exception->getMessage();
+            return false;
         }
     }
 

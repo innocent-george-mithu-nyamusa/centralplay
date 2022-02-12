@@ -8,10 +8,8 @@
         const ecocash = $("#payment_options_ecocash_details");
         const telecash = $("#payment_options_telecash_details");
         const onemoney = $("#payment_options_onemoney_details");
-
-        const checkBoxZipit = $("#check-icon-1");
-        const checkBoxVisa = $("#check-icon");
-
+        $("#check-icon-1");
+        $("#check-icon");
         const visaPaymentOption = $("#payment_visa_option");
         const zipitPaymentOption = $("#payment_zipit_option");
         const ecocashPaymentOption = $("#payment_ecocash_option");
@@ -21,11 +19,11 @@
         const planRtgs = $("#plan-rtgs");
         const planUs = $("#plan-us");
 
-        planRtgs.on("click", function (){
+        planRtgs.on("click", function () {
 
             //Set Php Payment type Option
             <?php
-            if(isset($_SESSION)){
+            if (isset($_SESSION)) {
                 $_SESSION["paymentPlan"] = "rtgs";
             }
             ?>
@@ -33,10 +31,10 @@
             window.location = 'http://localhost/centralplay/signup-step2.php';
         })
 
-        planUs.on("click", function (){
+        planUs.on("click", function () {
             //Set Php Payment type Option
             <?php
-            if(isset($_SESSION)){
+            if (isset($_SESSION)) {
                 $_SESSION["paymentPlan"] = "us";
             }
             ?>
@@ -97,7 +95,6 @@
                     },
                     success: function (data) {
                         if (data) {
-
                             $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                             $("#email").addClass("error_input");
                             $("#errText").html("Email is already taken");
@@ -112,7 +109,7 @@
                     },
                 });
             }
-        })
+        });
 
         $("#confirm-password").change(function () {
             var confirmPass = $(this).val();
@@ -219,26 +216,23 @@
             zipitPaymentOption.removeClass("jumbotron-selected");
             $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
 
-            if($("input:radio[name=optradio]:checked").val()){
+            if ($("input:radio[name=optradio]:checked").val()) {
 
                 $("input:radio[name=optradio]:checked")[0].checked = false;
             }
 
-            visa.css({"display":"block"});
+            visa.css({"display": "block"});
             zipit.css({"display": "none"});
             ecocash.css({"display": "none"});
             onemoney.css({"display": "none"});
             telecash.css({"display": "none"});
 
-                if
-            (hasClass === false)
-            {
+            if
+            (hasClass === false) {
                 $("#check-icon-repl").replaceWith("<i id='check-icon' class='fas fa-check-circle'></i>")
                 $(this).toggleClass("jumbotron-selected");
 
-            }
-        else
-            {
+            } else {
                 $("#check-icon").replaceWith("<div id='check-icon-repl'></div>");
                 $(this).toggleClass("jumbotron-selected");
 
@@ -254,12 +248,12 @@
             visaPaymentOption.removeClass("jumbotron-selected");
             $("#check-icon").replaceWith("<div id='check-icon-repl'></div>");
 
-            if($("input:radio[name=optradio]:checked").val()){
+            if ($("input:radio[name=optradio]:checked").val()) {
 
                 $("input:radio[name=optradio]:checked")[0].checked = false;
             }
 
-            visa.css({"display":"none"});
+            visa.css({"display": "none"});
             zipit.css({"display": "block"});
             ecocash.css({"display": "none"});
             onemoney.css({"display": "none"});
@@ -277,7 +271,7 @@
         });
 
         ecocashPaymentOption.click(function () {
-            visa.css({"display":"none"});
+            visa.css({"display": "none"});
             zipit.css({"display": "none"});
             ecocash.css({"display": "block"});
             onemoney.css({"display": "none"});
@@ -292,7 +286,7 @@
 
         onemoneyPaymentOption.click(function () {
 
-            visa.css({"display":"none"});
+            visa.css({"display": "none"});
             zipit.css({"display": "none"});
             ecocash.css({"display": "none"});
             onemoney.css({"display": "block"});
@@ -307,7 +301,7 @@
 
 
         telecashPaymentOption.click(function () {
-            visa.css({"display":"none"});
+            visa.css({"display": "none"});
             zipit.css({"display": "none"});
             ecocash.css({"display": "none"});
             onemoney.css({"display": "none"});
@@ -333,7 +327,7 @@
 
         $('#cardCcv').attr('maxlength', 4);
 
-        $('#cardNumber').on('change', function (){
+        $('#cardNumber').on('change', function () {
             if (!validateCard($('#cardNumber').val())) {
                 $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                 $("#cardNumber").addClass("error_input");
@@ -341,12 +335,12 @@
                 $("#visaCardRegister").attr({
                     disabled: "true",
                 });
-            }else {
+            } else {
                 $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
             }
         })
 
-        $('#cardCcv').on('change', function (){
+        $('#cardCcv').on('change', function () {
             if (!validateCVV($('#cardNumber').val(), $('#cardCcv').val())) {
                 $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                 $("#cardCvv").addClass("error_input");
@@ -354,42 +348,42 @@
                 $("#visaCardRegister").attr({
                     disabled: "true",
                 });
-            }else {
+            } else {
                 $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
             }
         });
 
 
-        $("#telecashNumber").on("change", function (){
-            if(!validateNumber($("#telecashNumber").val())) {
+        $("#telecashNumber").on("change", function () {
+            if (!validateNumber($("#telecashNumber").val())) {
                 $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                 $("#telecashNumber").addClass("error_input");
                 $("#errText").html("Invalid Telecash Number ");
-            }else {
+            } else {
                 $("#telecashNumber").removeClass("error_input");
                 $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
             }
         })
 
 
-        $("#ecocashNumber").on("change", function (){
-            if(!validateNumber($("#ecocashNumber").val())) {
+        $("#ecocashNumber").on("change", function () {
+            if (!validateNumber($("#ecocashNumber").val())) {
                 $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                 $("#ecocashNumber").addClass("error_input");
                 $("#errText").html("Invalid Econet Number");
-            }else {
+            } else {
                 $("#ecocashNumber").removeClass("error_input");
                 $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
             }
         })
 
 
-        $("#oneMoneyNumber").on("change", function (){
-            if(!validateNumber($("#oneMoneyNumber").val())) {
+        $("#oneMoneyNumber").on("change", function () {
+            if (!validateNumber($("#oneMoneyNumber").val())) {
                 $("#errorText").addClass("alert alert-danger d-flex align-items-center");
                 $("#oneMoneyNumber").addClass("error_input");
                 $("#errText").html("Invalid OneMoney Number");
-            }else {
+            } else {
                 $("#oneMoneyNumber").removeClass("error_input");
                 $("#errorText").removeClass("alert alert-danger d-flex align-items-center");
             }
@@ -417,7 +411,7 @@
             var accepted = false;
 
             // loop through the keys (visa, mastercard, amex, etc.)
-            Object.keys(acceptedCreditCards).forEach(function(key) {
+            Object.keys(acceptedCreditCards).forEach(function (key) {
                 var regex = acceptedCreditCards[key];
                 if (regex.test(value)) {
                     accepted = true;
@@ -433,7 +427,7 @@
             var cvv = cvv.replace(/\D/g, '');
             // american express and cvv is 4 digits
             if ((acceptedCreditCards.amex).test(creditCard)) {
-                if((/^\d{4}$/).test(cvv))
+                if ((/^\d{4}$/).test(cvv))
                     return true;
             } else if ((/^\d{3}$/).test(cvv)) { // other card & cvv is 3 digits
                 return true;
@@ -444,7 +438,7 @@
         function validateNumber(number) {
 
             const re = /2637[7-8|1|3][0-9]{7}$/;
-            if(re.test(number)){
+            if (re.test(number)) {
                 return true;
             }
             return false
@@ -508,7 +502,7 @@
                             $("#mail_success").fadeIn(500);
                             // $("#submit").remove();
                             setInterval(function () {
-                                window.location = 'http://localhost/centralplay/signup-step3.php';
+                                window.location = 'http://localhost/centralplay/signup-step4.php';
                             }, 1000)
                         } else {
                             console.log(data);
@@ -521,6 +515,7 @@
                 }
             ));
         });
+
         $("#zipitRegister").click(function (a) {
             a.preventDefault();
 
@@ -595,6 +590,7 @@
             ));
         });
 
+
         $("#ecocashRegister").click(function (a) {
             a.preventDefault();
 
@@ -628,6 +624,7 @@
                                 window.location = 'http://localhost/centralplay/signup-step4.php';
                             }, 1000);
                         } else {
+                            console.log(data);
                             $("#mail_fail").fadeIn(500);
                             $("#ecocashRegister").removeAttr("disabled").attr("value", "Sign Up");
                         }
@@ -644,7 +641,7 @@
             var b = !1,
                 c = $("#oneMoneyNumber").val();
 
-                if ($("#oneMoneyNumber").click(function () {
+            if ($("#oneMoneyNumber").click(function () {
                 $(this).removeClass("error_input")
             }), 0 == c.length) {
                 var b = !0;
@@ -686,7 +683,7 @@
             var b = !1,
                 c = $("#telecashNumber").val();
 
-                if ($("#telecashNumber").click(function () {
+            if ($("#telecashNumber").click(function () {
                 $(this).removeClass("error_input")
             }), 0 == c.length) {
                 var b = !0;
@@ -716,11 +713,194 @@
                             $("#mail_fail").fadeIn(500);
                             $("#telecashRegister").removeAttr("disabled").attr("value", "Sign Up");
                         }
-
                     }
                 }
             ));
         });
+
+
+        $("#genre-action").on("click", function () {
+
+            if (!$(this).hasClass("active")) {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { action: "liked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log(" genre liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+            } else {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { action: "unliked", genre: "genre"},
+                        dataType: "text",
+                        failed: function () {
+                            console.log("update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+
+            }
+
+        })
+
+        $("#genre-romance").on("click",function () {
+
+            if (!$(this).hasClass("active")) {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { romance: "liked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("action update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("action liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+            } else {
+
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { romance: "unliked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("romance liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+
+            }
+
+        })
+
+        $("#genre-comedy").on("click",function () {
+
+            if (!$(this).hasClass("active")) {
+
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { comedy: "liked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("comedy update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("comedy liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+            } else {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { comedy: "unliked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("comedy liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+
+            }
+
+        })
+
+        $("#genre-drama").on("click",function () {
+
+            if (!$(this).hasClass("active")) {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { drama: "liked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+                            console.log("drama update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("drama liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+            } else {
+                $.ajax(
+                    {
+                        url: "includes/updateGenre.php",
+                        method: "post",
+                        data: { drama: "unliked", genre: "genre" },
+                        dataType: "text",
+                        failed: function () {
+
+                            console.log("drama update failed");
+                        },
+                        success: function (data) {
+                            // if(data == 1){
+                            //     console.log("drama liked update successful")
+                            // }else {
+                            //     console.log(data)
+                            // }
+                        }
+                    }
+                );
+
+            }
+
+        })
 
     });
 

@@ -7,8 +7,8 @@ namespace Classes;
 class Card extends Dbh
 {
     private string $cardId;
-    private int $cardNumber;
-    private int $cardCvv;
+    private string $cardNumber;
+    private string $cardCvv;
     private string $cardOwnerId;
     private string $cardExpiry;
     private string $cardOwnerName;
@@ -59,7 +59,7 @@ class Card extends Dbh
      */
     protected function setCardExpiry(string $cardExpiry): void
     {
-        $this->cardExpry = $cardExpiry;
+        $this->cardExpiry = $cardExpiry;
     }
 
 
@@ -67,7 +67,7 @@ class Card extends Dbh
     /**
      * @param int $cardCvv
      */
-    protected function setCardCvv(int $cardCvv): void
+    protected function setCardCvv(string $cardCvv): void
     {
         $this->cardCvv = $cardCvv;
     }
@@ -75,7 +75,7 @@ class Card extends Dbh
     /**
      * @param int $cardNumber
      */
-    protected function setCardNumber(int $cardNumber): void
+    protected function setCardNumber(string $cardNumber): void
     {
         $this->cardNumber = $cardNumber;
     }
@@ -94,7 +94,8 @@ class Card extends Dbh
 
     private function createCard(): bool {
         try {
-            $cardAddQuery = "INSERT INTO card(card_id, card_number, card_cvv, card_owner, card_owner_full_name, card_expiry, card_zip) VALUES (:cardId, :cardNumber,:cardCvv, :cardOwner, :cardOwnerName, :cardExpiry, :cardZip)";
+
+            $cardAddQuery = "INSERT INTO card(card_id, card_number, card_cvv, card_owner, card_owner_full_name, card_expiry, card_zip) VALUES(:cardId, :cardNumber,:cardCvv, :cardOwner, :cardOwnerName, :cardExpiry, :cardZip)";
             $cardAddStmt = $this->connect()->prepare($cardAddQuery);
             $cardAddStmt->bindParam(":cardId", $this->cardId);
             $cardAddStmt->bindParam(":cardNumber", $this->cardNumber);

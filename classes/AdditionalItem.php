@@ -78,7 +78,7 @@ class AdditionalItem extends Dbh
             return $additionalItemStmt->execute();
 
         }catch (Exception $exception) {
-            echo "Failed to create Additional Item".$exception->getMessage();
+            echo "Failed to create Additional Movie".$exception->getMessage();
             return false;
         }
     }
@@ -116,7 +116,7 @@ class AdditionalItem extends Dbh
             return $updateItemStmt->execute();
 
         }catch (Exception $exception) {
-           echo "Failed to update additional Item". $exception->getMessage();
+           echo "Failed to update additional Movie". $exception->getMessage();
            return false;
         }
     }

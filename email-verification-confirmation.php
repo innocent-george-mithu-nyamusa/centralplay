@@ -14,7 +14,7 @@
 		<link rel="stylesheet" href="icons/fontawesome/css/fontawesome-all.min.css"><!-- FontAwesome Icons -->
 		<link rel="stylesheet" href="icons/Iconsmind__Ultimate_Pack/Line%20icons/styles.min.css"><!-- iconsmind.com Icons -->
 		
-		<title> Welcome | Central Play</title>
+		<title> Account Verification Email Sent | Central Play</title>
 	</head>
 	<body>
 		
@@ -30,28 +30,21 @@
 							<div class="registration-step-final-padding welcome-page-styles">
 								
 								<div class="centered-headings-pro pricing-plans-headings">
-									<h6>Sign up complete!</h6>
-									<h1>Welcome to Cetral Play!</h1>
+									<h6>Account verification Email Sent!</h6>
+									<h1>Click the link we have sent to your e-mail to verify your account!</h1>
 								</div>
 								
-								<h6 class="welcome-style-summary">You can now start watching TV shows.</h6>
-								<h6 class="welcome-style-summary">Your next billing information will be sent on your email on <?php echo $_SESSION["subscriptionExpirationDate"] ?></h6>
-								
-								<h3 class="welcome-plan-title">Your Plan: <span><?php echo $_SESSION["paymentPlan"]=="us" ? "US Plan": "RTGS Plan"; ?></span></h3>
-								
-								<ul class="welcome-features">
-                                    <li>Ultra HD Available</li>
-                                    <li>Watch on any Device</li>
-                                    <li>Full Seasons</li>
-                                    <li>HD also Available</li>
-                                    <li>One Time Payment For Any Season</li>
-								</ul>
+								<h6 class="welcome-style-summary">Thank yor for taking the time to verify your Account.</h6>
+								<h6 class="welcome-style-summary">Proceed to click the link sent your Email. Email verification expires in 10 minutes from now</h6>
+
+								<h3 class="welcome-plan-title"><span>Verification Email token Expires in 10 minutes</span></h3>
+
 								<div class="clearfix"></div>
 								
-								<div class="registration-step-final-footer">
-									<button id="btnMakePayment" class="btn btn-green-pro">Make Payment</button>
-									<button id="btnVerifyEmail" class="btn">Verify Your Email</button>
-								</div>
+<!--								<div class="registration-step-final-footer">-->
+<!--									<button id="btnMakePayment" class="btn btn-green-pro">Make Payment</button>-->
+<!--									<button id="btnVerifyEmail" class="btn">Verify Your Email</button>-->
+<!--								</div>-->
 								
 							</div><!-- close .registration-step-final-padding -->
 	  					 

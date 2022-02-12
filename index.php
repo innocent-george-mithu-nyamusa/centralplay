@@ -18,6 +18,7 @@ session_start();
     <title>Welcome | Central Play</title>
 </head>
 <body>
+
 <?php include "includes/header.php";?>
 
 
@@ -55,14 +56,13 @@ session_start();
                     <div class="progression-studios-slider-vertical-align">
 
                         <div class="container">
-
                             <div class="progression-studios-slider-caption-width">
                                 <div class="progression-studios-slider-caption-align">
                                     <h2 class="light-fonts-pro">Wadiwa Wepamoyo Season 2</h2>
                                     <h6 class="light-fonts-pro">High Quality Streaming. No Lags, Works Perfectly on any
                                         data speed.</h6>
                                     <a class="btn btn-green-pro btn-slider-pro" href="dashboard-home.php"
-                                       role="button"></a>
+                                       role="button"> Start Viewing</a>
                                 </div><!-- close .progression-studios-slider-caption-align -->
                             </div><!-- close .progression-studios-slider-caption-width -->
 
@@ -168,20 +168,20 @@ session_start();
             <div class="row">
                 <div class="col-md">
                     <ul class="checkmark-list-pro">
-                        <li>1 month unlimited access!</li>
-                        <li>Thousands of TV shows, movies &amp; more.</li>
+                        <li>Utra HD Available</li>
+                        <li>Watch on any Device</li>
                     </ul>
                 </div>
                 <div class="col-md">
                     <ul class="checkmark-list-pro">
-                        <li>Stream on your phone, laptop, tablet or TV.</li>
-                        <li>You can even Download & watch offline.</li>
+                        <li>Full Season</li>
+                        <li>HD also Available</li>
                     </ul>
                 </div>
                 <div class="col-md">
                     <ul class="checkmark-list-pro">
-                        <li>1 month unlimited access!</li>
-                        <li>Thousands of TV shows, movies &amp; more.</li>
+                        <li>full month unlimited access!</li>
+                        <li>Lots of TV shows, movies &amp; more.</li>
                     </ul>
                 </div>
             </div><!-- close .row -->
@@ -191,41 +191,30 @@ session_start();
                 <div class="row">
                     <div class="col-md">
                         <div class="pricing-table-col">
-                            <h6>FREE TRIAL</h6>
-                            <h2>Free</h2>
+                            <h6>RTGS PLAN</h6>
+                            <h2><sup>RTGS</sup>420<span> / month</span></h2>
                             <ul>
-                                <li>720p Available</li>
+                                <li>Utra HD Available</li>
                                 <li>Watch on any Device</li>
-                                <li>20 Movies and Shows</li>
+                                <li>Full Season</li>
+                                <li>HD also Available</li>
+                                <li>One Time For Any Season</li>
                             </ul>
-                            <p><a class="btn" id="account_price_free" href="signup-step2.php" role="button">Choose
-                                    Plan</a></p>
+                            <p><a class="btn" id="plan-rtgs" role="button">Choose Plan</a></p>
                         </div><!-- close .pricing-table-col -->
                     </div><!-- close .col-md-12 -->
                     <div class="col-md">
                         <div class="pricing-table-col pricing-table-col-shadow-pro">
-                            <h6>STARTER</h6>
-                            <h2><sup>$</sup>10<span> / month</span></h2>
-                            <ul>
-                                <li>HD Available</li>
-                                <li>Watch on any Device</li>
-                                <li>70 Movies and Shows</li>
-                            </ul>
-                            <p><a class="btn btn-green-pro" id="account_price_pro" href="signup-step2.php"
-                                  role="button">Choose Plan</a></p>
-                        </div><!-- close .pricing-table-col -->
-                    </div><!-- close .col-md-12 -->
-                    <div class="col-md">
-                        <div class="pricing-table-col">
-                            <h6>PREMIUM</h6>
-                            <h2><sup>$</sup>14<span> / month</span></h2>
+                            <h6>US PLAN</h6>
+                            <h2><sup>$</sup>3<span> / month</span></h2>
                             <ul>
                                 <li>Ultra HD Available</li>
                                 <li>Watch on any Device</li>
-                                <li>Unlimited Movies and Shows</li>
-                                <ul>
-                                    <p><a class="btn" id="account_price_premium" href="signup-step2.php" role="button">Choose
-                                            Plan</a></p>
+                                <li>Full Seasons</li>
+                                <li>HD also Available</li>
+                                <li>One Time For Any Season</li>
+                            </ul>
+                            <p><a class="btn btn-green-pro"  id="plan-us" role="button">Choose Plan</a></p>
                         </div><!-- close .pricing-table-col -->
                     </div><!-- close .col-md-12 -->
                 </div><!-- close .row -->
@@ -265,61 +254,7 @@ session_start();
 
 
 <!-- Modal -->
-<div class="modal fade" id="LoginModal" tabindex="-1" role="dialog" aria-labelledby="LoginModal" aria-hidden="true">
-    <button type="button" class="close float-close-pro" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-    <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-        <div class="modal-content">
-            <div class="modal-header-pro">
-                <h2>Welcome Back</h2>
-                <h6>Sign in to your account to continue using Central Play</h6>
-            </div>
-            <div class="modal-body-pro social-login-modal-body-pro">
-
-                <div class="registration-social-login-container">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="form-control" id="username" placeholder="Username">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <div class="form-group">
-                            <button type="button" class="btn btn-green-pro btn-display-block">Sign In</button>
-                        </div>
-                        <div class="container-fluid">
-                            <div class="row no-gutters">
-                                <div class="col checkbox-remember-pro"><input type="checkbox"
-                                                                              id="checkbox-remember"><label
-                                            for="checkbox-remember" class="col-form-label">Remember me</label></div>
-                                <div class="col forgot-your-password"><a href="#!">Forgot your password?</a></div>
-                            </div>
-                        </div><!-- close .container-fluid -->
-
-                    </form>
-
-                    <div class="registration-social-login-or">or</div>
-
-                </div><!-- close .registration-social-login-container -->
-
-                <div class="registration-social-login-options">
-                    <h6>Sign in with your social account</h6>
-                    <div class="social-icon-login facebook-color"><i class="fab fa-facebook-f"></i> Facebook</div>
-                    <div class="social-icon-login twitter-color"><i class="fab fa-twitter"></i> Twitter</div>
-                    <div class="social-icon-login google-color"><i class="fab fa-google-plus-g"></i> Google</div>
-                </div><!-- close .registration-social-login-options -->
-
-                <div class="clearfix"></div>
-
-
-            </div><!-- close .modal-body -->
-
-            <a class="not-a-member-pro" href="signup-step2.php">Not a member? <span>Join Today!</span></a>
-        </div><!-- close .modal-content -->
-    </div><!-- close .modal-dialog -->
-</div><!-- close .modal -->
-
+<?php include "includes/loginModal.php";?>
 
 <!-- Required Framework JavaScript -->
 <script src="js/libs/jquery-3.3.1.min.js"></script><!-- jQuery -->
@@ -331,25 +266,8 @@ session_start();
 <script src="js/navigation.js" defer></script><!-- Header Navigation JS Plugin -->
 <script src="js/jquery.flexslider-min.js" defer></script><!-- FlexSlider JS Plugin -->
 <script src="js/script.js" defer></script>
-<script>
-    $("#account_price_free").click(function () {
-        <?php
-        $_SESSION["user_sign_up_plan"] = "free";
-        ?>
-    });
-
-    $("#account_price_pro").click(function () {
-        <?php
-        $_SESSION["user_sign_up_plan"] = "pro";
-        ?>
-    });
-
-    $("#account_price_pro").click(function () {
-        <?php
-        $_SESSION["user_sign_up_plan"] = "premium";
-        ?>
-    })
-</script>
+<script src="js/authentication.js"></script>
+<?php include "includes/userRegistration.php";?>
 
 </body>
 

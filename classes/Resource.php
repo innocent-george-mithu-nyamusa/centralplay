@@ -76,7 +76,7 @@ class Resource extends Dbh
             $createResourceStmt->bindParam("resourceUserId", $this->userId);
             return $createResourceStmt->execute();
         } catch (Exception $exception) {
-            echo "Failed to create Item " . $exception->getMessage();
+            echo "Failed to create Movie " . $exception->getMessage();
             return false;
         }
     }
@@ -171,14 +171,20 @@ class Resource extends Dbh
     private function updateFavorite(): bool
     {
         try {
-            $updateLikeQuery = "UPDATE resource SET resource_favorite=:favorite WHERE resource_item_id=:resourceItemId AND resource_user_id=:resourceUserId";
-            $updateLikeStmt = $this->connect()->prepare($updateLikeQuery);
-            $updateLikeStmt->bindParam(":favorite", $this->favorite);
+            if($this->favorite == 0){
+                $updateLikeQuery = "UPDATE resource SET resource_favorite='0' WHERE resource_item_id=:resourceItemId AND resource_user_id=:resourceUserId";
+                $updateLikeStmt = $this->connect()->prepare($updateLikeQuery);
+            } else {
+                $updateLikeQuery = "UPDATE resource SET resource_favorite=:favorite WHERE resource_item_id=:resourceItemId AND resource_user_id=:resourceUserId";
+                $updateLikeStmt = $this->connect()->prepare($updateLikeQuery);
+                $updateLikeStmt->bindParam(":favorite", $this->favorite);
+            }
+
             $updateLikeStmt->bindParam(":resourceItemId", $this->itemId);
             $updateLikeStmt->bindParam(":resourceUserId", $this->userId);
             return $updateLikeStmt->execute();
         } catch (Exception $exception) {
-            echo "Failed to update Like " . $exception->getMessage();
+            echo "Failed to update Favorite " . $exception->getTraceAsString();
             return false;
         }
     }
@@ -260,16 +266,22 @@ class Resource extends Dbh
     private function hasUserReacted(): bool
     {
         try {
-            $getUserIdQuery = "SELECT COUNT(*) FROM resource WHERE resource_user_id=:resourceUserId AND resource_item_id=:resourceItemId";
-            $getUserIdStmt = $this->connect()->prepare($getUserIdQuery);
-            $getUserIdStmt->bindParam(":resourceUserId", $this->userId);
-            $getUserIdStmt->bindParam(":resourceItemId", $this->itemId);
-            $getUserIdStmt->execute();
-            $user_number = $getUserIdStmt->fetchColumn();
-            $getUserIdStmt->closeCursor();
-            if ($user_number > 0) {
+
+            $getFavoritesnumberQuery = "SELECT COUNT(*) FROM resource WHERE resource_item_id=:resourceItemId AND resource_user_id=:resourceUserId";
+            $getFavoritesnumberStmt = $this->connect()->prepare($getFavoritesnumberQuery);
+//            echo $this->itemId;
+            $getFavoritesnumberStmt->bindParam(":resourceUserId", $this->userId);
+            $getFavoritesnumberStmt->bindParam(":resourceItemId", $this->itemId);
+            $getFavoritesnumberStmt->execute();
+            $favorite_number = $getFavoritesnumberStmt->fetchColumn();
+//            $getFavoritesnumberStmt->closeCursor();
+
+            if ($favorite_number > 0) {
+                echo $favorite_number;
                 return true;
             }
+
+            echo " User didn't react. Users=".$favorite_number;
             return false;
         } catch (Exception $exception) {
             echo "Failed to check if user has reacted " . $exception->getMessage();

@@ -9,16 +9,33 @@ use PDO;
 
 class Category extends Dbh
 {
-    private $categoryId;
-    private $categoryName;
-    private $categoryNo;
+    private string $categoryId;
+    private string $categoryName;
+    private string $categoryImage;
+    private string $categoryIcon;
 
-    protected function getCategoriesReult(): ?array
+    /**
+     * @param string $categoryImage
+     */
+    protected function setCategoryImage(string $categoryImage): void
     {
-        return $this->getCaterories();
+        $this->categoryImage = $categoryImage;
     }
 
-    private function getCaterories(): array|bool
+    /**
+     * @param string $categoryIcon
+     */
+    protected function setCategoryIcon(string $categoryIcon): void
+    {
+        $this->categoryIcon = $categoryIcon;
+    }
+
+    protected function getCategoriesResult(): ?array
+    {
+        return $this->getCategories();
+    }
+
+    private function getCategories(): array|bool
     {
         try {
             $allCategoriesQuery = "SELECT * FROM category";
@@ -33,10 +50,6 @@ class Category extends Dbh
         }
     }
 
-    protected function setCatNo($catNo)
-    {
-        $this->categoryNo = $catNo;
-    }
 
     protected function setId($id)
     {
@@ -97,10 +110,10 @@ class Category extends Dbh
         try {
             $createCategoryQuery = "INSERT INTO category(
                      category_id,
-                     category_name
-                    ) ";
-            $createCategoryQuery .= "VALUES(:categoryId, :categoryName)";
-
+                     category_name,
+                     cat_image,
+                     cat_icon
+                    ) VALUES (:categoryId, :categoryName, :categoryImage, :categoryIcon)";
             $createCategoryStmt = $this->connect()->prepare($createCategoryQuery);
             $createCategoryStmt->bindParam(":categoryId", $this->categoryId);
             $createCategoryStmt->bindParam(":categoryName", $this->categoryName);

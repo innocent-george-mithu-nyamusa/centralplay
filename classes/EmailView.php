@@ -6,9 +6,25 @@ namespace Classes;
 
 class EmailView extends EmailContr
 {
-    public function __construct($name, $email, $message)
+
+    public function sendAccountVerificationEmail(string $name, string $email, string $userId) :bool
     {
-        parent::__construct($name, $email, $message);
+
+        $this->setCRecipientEmail($email);
+        $this->setCRecipientName($name);
+        $this->setCVerificationCode();
+        $this->setUserVerificationId($userId);
+
+        return parent::verifyAccountStatus();
+    }
+
+    public function sendPasswordResetEmail(string $name, string $email, string $userId): bool{
+
+        $this->setCRecipientEmail($email);
+        $this->setCRecipientName($name);
+        $this->setUserVerificationId($userId);
+        $this->setCVerificationCode();
+        return parent::passwordResetResult();
     }
 
 }
